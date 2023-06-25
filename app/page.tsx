@@ -16,6 +16,10 @@ export default function Home() {
 
   useEffect(() => {
     getUserCertificates().then((certificates: any) => {
+      certificates[0].getAlgorithm().then((info: any) => {
+        // Если надо проверить что алгоритм подписи ГОСТ Р 34.10-2012 256 бит
+        console.log(info.oid === "1.2.643.7.1.1.1.1");
+      });
       setUserCertificates(certificates);
     });
   }, []);
